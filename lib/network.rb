@@ -32,6 +32,17 @@ class Network
   end
 
   def actors_by_show
+    actors = @shows.reduce(Hash.new) do |memo, show|
+      if memo[show]
+        memo[show].push(show.actors)
+      else
+        memo[show] = show.actors
+      end
+      memo
+    end
+  end
+
+  def shows_by_actor
     test = @shows.reduce(Hash.new) do |memo, show|
       if memo[show]
         memo[show].push(show.actors)
@@ -42,4 +53,7 @@ class Network
     end
   end
 
+  def prolific_actors
+
+  end
 end
